@@ -3,12 +3,14 @@ export default function About() {
     <section className="container section narrow">
       <h1>About ProductHub</h1>
       <p>
-        ProductHub is a demonstration product catalogue created as a
-        full-stack / web-development capstone project.
+        ProductHub is a demonstration frontend-only shop created as a
+        full-stack / web-development capstone project. It now includes a small
+        e-commerce experience: categories, offers, search, filtering and a
+        local-storage cart.
       </p>
       <ul className="about-list">
         <li>
-          <strong>React</strong> with functional components
+          <strong>React</strong> with functional components and Context for the cart
         </li>
         <li>
           <strong>React Router</strong> for client-side routing
@@ -25,8 +27,9 @@ export default function About() {
         </li>
       </ul>
       <p className="muted">
-        Products are stored locally in <code>src/data/products.js</code>. No
-        backend or database is required for this demo.
+        Products are stored locally in <code>src/data/products.js</code> and the
+        cart persists in <code>localStorage</code>. No backend or database is
+        required for this demo.
       </p>
     </section>
   );

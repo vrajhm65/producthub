@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import CategoryCard from "../components/CategoryCard.jsx";
-import { CATEGORIES, getFeaturedProducts, getOfferProducts } from "../data/products.js";
+import { CATEGORIES, getPopularProducts, getOfferProducts } from "../data/products.js";
 
 export default function Home() {
-  const featured = getFeaturedProducts(4);
-  const offers = getOfferProducts().slice(0, 4);
+  const popular = getPopularProducts(6);
+  const offers = getOfferProducts().slice(0, 6);
 
   return (
     <>
@@ -13,17 +13,17 @@ export default function Home() {
         <div className="container hero-inner">
           <div>
             <span className="badge">New season offers</span>
-            <h1>Everything You Need, In One Place</h1>
+            <h1>Shop Smart. Live Better.</h1>
             <p className="lead">
-              Shop a small curated catalogue — electronics, fashion, home and
-              accessories — with fast client-side navigation and a local cart.
+              Electronics, fashion, home &amp; kitchen, accessories, beauty and
+              fitness — 30 quality products with honest prices in rupees.
             </p>
             <div className="hero-cta">
               <Link to="/products" className="btn btn-primary">
                 Shop Now
               </Link>
               <Link to="/offers" className="btn btn-outline">
-                Explore Offers
+                View Offers
               </Link>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function Home() {
             All categories →
           </Link>
         </div>
-        <div className="grid grid-4">
+        <div className="grid grid-3">
           {CATEGORIES.map((c) => (
             <CategoryCard key={c.name} category={c} />
           ))}
@@ -55,7 +55,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid">
-          {offers.slice(0, 3).map((p) => (
+          {offers.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
@@ -63,13 +63,13 @@ export default function Home() {
 
       <section className="container section">
         <div className="section-head">
-          <h2>Featured products</h2>
+          <h2>Popular products</h2>
           <Link to="/products" className="link">
             View all →
           </Link>
         </div>
         <div className="grid">
-          {featured.map((p) => (
+          {popular.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
@@ -79,8 +79,8 @@ export default function Home() {
         <h2>Why shop with us</h2>
         <ul className="perks">
           <li>✓ Quality products</li>
+          <li>✓ Great prices</li>
           <li>✓ Easy shopping</li>
-          <li>✓ Great offers</li>
           <li>✓ Responsive experience</li>
         </ul>
       </section>

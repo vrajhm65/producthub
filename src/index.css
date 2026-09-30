@@ -233,6 +233,9 @@ input, select { font: inherit; }
 }
 .card-actions { display: flex; gap: 0.5rem; margin-top: auto; flex-wrap: wrap; }
 .card-actions .btn { flex: 1 1 auto; }
+.card-brand { margin: 0; font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.card-title { min-height: 2.6em; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
 
 /* Category cards */
 .category-card {
@@ -251,6 +254,8 @@ input, select { font: inherit; }
 .category-card h3 { margin: 0; }
 .category-card p { margin: 0 0 0.4rem; font-size: 0.92rem; }
 .category-icon { font-size: 2rem; }
+.category-thumb { display: block; border-radius: 8px; overflow: hidden; margin: -0.25rem -0.25rem 0.35rem; }
+.category-thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #f1f5f9; }
 
 /* Perks */
 .perks {
@@ -435,6 +440,7 @@ input, select { font: inherit; }
 @media (max-width: 900px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .perks { grid-template-columns: repeat(2, 1fr); }
   .hero-inner { grid-template-columns: 1fr; padding: 2rem 1rem; }
   .hero-art { display: none; }
@@ -443,7 +449,7 @@ input, select { font: inherit; }
   .toolbar { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
-  .grid, .grid-4 { grid-template-columns: 1fr; }
+  .grid, .grid-4, .grid-3 { grid-template-columns: 1fr; }
   .perks { grid-template-columns: 1fr; }
   .toolbar { grid-template-columns: 1fr; }
   .nav-toggle { display: block; }

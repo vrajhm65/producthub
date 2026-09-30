@@ -9,10 +9,16 @@ export default function CategoryCard({ category }) {
       to={`/products?category=${encodeURIComponent(category.name)}`}
       className="category-card"
     >
-      <span className="category-icon" aria-hidden="true">
-        {category.icon}
+      <span className="category-thumb" aria-hidden="true">
+        {category.image ? (
+          <img src={category.image} alt="" loading="lazy" width="800" height="600" />
+        ) : (
+          <span className="category-icon">{category.icon}</span>
+        )}
       </span>
-      <h3>{category.name}</h3>
+      <h3>
+        {category.icon} {category.name}
+      </h3>
       <p className="muted">{category.description}</p>
       <span className="link">
         {count} product{count === 1 ? "" : "s"} →

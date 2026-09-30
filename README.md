@@ -1,17 +1,17 @@
 # ProductHub
 
-A simple, responsive demo product catalogue built with React, React Router and Vite. Created as a Thiranex mentorship capstone for "Full-Stack Deployment & Project Architecture".
+A small, responsive frontend-only e-commerce demo built with React, React Router and Vite. Created as a Thiranex mentorship capstone for "Full-Stack Deployment & Project Architecture".
 
 ## Features
 
-- Home page with hero + 3 featured products
-- Products page with 8 sample products (local data file)
-- Product details page via `/products/:id` with invalid-ID handling
-- About page and custom 404 page
-- Client-side routing (no page reloads)
-- Modular, reusable components
-- Responsive layout (mobile / tablet / desktop)
-- Basic performance optimizations: lazy-loaded images, code-split pages, Vite production build
+- Home page: hero, 6 category cards, Today's Offers, Popular Products
+- Products page: 30 products with instant search (name, brand, category, description), 6 category filters, sorting
+- Categories page with product counts, linking to filtered products
+- Offers page showing only discounted products with realistic discounts
+- Product details via `/products/:id` with quantity selector and invalid-ID handling
+- Cart (React Context + localStorage): add, remove, quantity controls, subtotal, badge count, checkout placeholder
+- Prices in Indian Rupees (₹) with `en-IN` formatting
+- Client-side routing, modular components, responsive layout, lazy images with fallback, code-split pages
 
 ## Tech stack
 
@@ -41,7 +41,7 @@ npm run preview
 1. Push this folder to GitHub.
 2. Import the repo in Vercel as a Vite project.
 3. Build command: `npm run build`, output dir: `dist`.
-4. `vercel.json` contains an SPA rewrite so refreshing `/products`, `/products/:id` and `/about` does not 404.
+4. `vercel.json` contains an SPA rewrite so refreshing `/products`, `/products/:id`, `/categories`, `/offers`, `/cart` and `/about` does not 404.
 
 ## Live demo
 
@@ -51,8 +51,9 @@ npm run preview
 
 ```
 src/
-├── components/ (Navbar, Footer, ProductCard)
-├── pages/ (Home, Products, ProductDetails, About, NotFound)
+├── components/ (Navbar, Footer, ProductCard, CategoryCard, ProductImage)
+├── pages/ (Home, Products, ProductDetails, Categories, Offers, Cart, About, NotFound)
+├── context/ (CartContext)
 ├── data/products.js
 ├── App.jsx
 ├── main.jsx

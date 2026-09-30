@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import { formatINR } from "../data/products.js";
+import ProductImage from "./ProductImage.jsx";
 
 function Stars({ rating }) {
   const full = Math.round(rating);
@@ -18,22 +20,20 @@ export default function ProductCard({ product }) {
     <article className="card">
       <Link to={`/products/${product.id}`} className="card-media">
         {hasOffer && <span className="offer-badge">-{product.discount}%</span>}
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          width="800"
-          height="600"
-        />
+        <ProductImage product={product} width="800" height="600" />
       </Link>
       <div className="card-body">
         <span className="badge">{product.category}</span>
+        <p className="card-brand">{product.brand}</p>
         <h3 className="card-title">{product.name}</h3>
         <Stars rating={product.rating} />
         <p className="card-price">
-          ${product.price.toFixed(2)}{" "}
+          {formatINR(product.price)}{" "}
           {hasOffer && (
-            <s className="old-price">${product.originalPrice.toFixed(2)}</s>
+            <>
+              <s className="old-price">{formatINR(product.originalPrice)}</s>{" "}
+              <span className="save">{product.discount}% off</span>
+            </>
           )}
         </p>
         <p className="card-desc">{product.description}</p>

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
-import { CATEGORIES, products } from "../data/products.js";
+import { CATEGORIES, products, searchProducts } from "../data/products.js";
 
 const SORTS = [
   { value: "default", label: "Default" },
@@ -25,16 +25,9 @@ export default function Products() {
   }, [params]);
 
   const results = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    let list = products.filter((p) => {
-      const matchCategory = category === "All" || p.category === category;
-      const matchSearch =
-        !q ||
-        p.name.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q);
-      return matchCategory && matchSearch;
-    });
+    let list = searchProducts(search).filter(
+      (p) => category === "All" || p.category === category
+    );
     if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
     if (sort === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
@@ -60,7 +53,7 @@ export default function Products() {
           <input
             id="product-search"
             type="search"
-            placeholder="Search name, category, description…"
+            placeholder="Search name, brand, category…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

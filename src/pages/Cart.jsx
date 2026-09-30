@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import { formatINR } from "../data/products.js";
+import ProductImage from "../components/ProductImage.jsx";
 
 export default function Cart() {
   const { items, count, subtotal, inc, dec, remove } = useCart();
@@ -26,17 +28,11 @@ export default function Cart() {
           {items.map(({ product, qty }) => (
             <article key={product.id} className="cart-row">
               <Link to={`/products/${product.id}`}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  loading="lazy"
-                  width="200"
-                  height="150"
-                />
+                <ProductImage product={product} width="200" height="150" />
               </Link>
               <div className="cart-info">
                 <h3>{product.name}</h3>
-                <p className="muted">${product.price.toFixed(2)} each</p>
+                <p className="muted">{product.brand} · {formatINR(product.price)} each</p>
                 <div className="qty-controls qty-sm">
                   <button type="button" aria-label={`Decrease quantity of ${product.name}`} onClick={() => dec(product.id)}>
                     −
@@ -48,7 +44,7 @@ export default function Cart() {
                 </div>
               </div>
               <div className="cart-line">
-                <p className="card-price">${(product.price * qty).toFixed(2)}</p>
+                <p className="card-price">{formatINR(product.price * qty)}</p>
                 <button
                   type="button"
                   className="link danger"
@@ -64,13 +60,13 @@ export default function Cart() {
         <aside className="cart-summary">
           <h2>Summary</h2>
           <p className="summary-row">
-            <span>Subtotal</span> <span>${subtotal.toFixed(2)}</span>
+            <span>Subtotal</span> <span>{formatINR(subtotal)}</span>
           </p>
           <p className="summary-row">
             <span>Delivery</span> <span>Free</span>
           </p>
           <p className="summary-row total">
-            <span>Total</span> <span>${subtotal.toFixed(2)}</span>
+            <span>Total</span> <span>{formatINR(subtotal)}</span>
           </p>
           <Link to="/products" className="btn btn-outline">
             Continue Shopping

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductById } from "../data/products.js";
+import { formatINR, getProductById } from "../data/products.js";
 import { useCart } from "../context/CartContext.jsx";
+import ProductImage from "../components/ProductImage.jsx";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -37,29 +38,24 @@ export default function ProductDetails() {
       <div className="details">
         <div className="details-media">
           {hasOffer && <span className="offer-badge">-{product.discount}%</span>}
-          <img
-            src={product.image}
-            alt={product.name}
-            width="800"
-            height="600"
-            fetchPriority="high"
-          />
+          <ProductImage product={product} width="800" height="600" eager />
         </div>
         <div>
           <span className="badge">{product.category}</span>
+          <p className="card-brand">{product.brand}</p>
           <h1>{product.name}</h1>
           <p className="stars" aria-label={`Rated ${product.rating} out of 5`}>
             {"★".repeat(Math.round(product.rating))}{"☆".repeat(5 - Math.round(product.rating))}{" "}
             <span className="muted">{product.rating.toFixed(1)} / 5</span>
           </p>
           <p className="details-price">
-            ${product.price.toFixed(2)}{" "}
-            {hasOffer && <s className="old-price">${product.originalPrice.toFixed(2)}</s>}{" "}
+            {formatINR(product.price)}{" "}
+            {hasOffer && <s className="old-price">{formatINR(product.originalPrice)}</s>}{" "}
             {hasOffer && <span className="save">Save {product.discount}%</span>}
           </p>
           <p>{product.description}</p>
           <p className="muted">
-            Product ID: {product.id} · Demo data, no backend required.
+            Product ID: {product.id} · Brand: {product.brand} · Demo data, no backend required.
           </p>
 
           <div className="qty-row">

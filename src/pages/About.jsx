@@ -4,8 +4,9 @@ export default function About() {
       <h1>About ProductHub</h1>
       <p>
         ProductHub is a demonstration frontend-only shop created as a
-        full-stack / web-development capstone project. It now includes a small
-        e-commerce experience: categories, offers, search, filtering and a
+        full-stack / web-development capstone project. It offers 30 products
+        across 6 categories — electronics, fashion, home &amp; kitchen,
+        accessories, beauty and fitness — with search, filtering, offers and a
         local-storage cart.
       </p>
       <ul className="about-list">
